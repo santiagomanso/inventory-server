@@ -27,15 +27,15 @@ exports.getProductByName = async (req,res)=>{
         console.log("               _________________________________________________");
         console.log("               |            - GET PRODUCT BY NAME -            |")
         console.log("               |                                               |");
-        console.log("               | req.body.name =  ", req.body.name , "       |");
+        console.log("               | req.body.name =  ", req.body.name , "                  |");
+        console.log("               | req.query.name =  ", req.query.name , "      |");
+        console.log("               | req.params (testing) =  ", req.params , "                  |");
         console.log("               |                                               |");
-        const product = await Product.findOne({name: req.body.name}); //
-        console.log("               | Product Name: ", product.name, "          |");
-        console.log("               | Product Shelf: ", product.shelf_number, "                        |");
-        console.log("               | Product Total Stock: ", product.stock_total, "                     |");
-        console.log("               | Product Shelf Stock: ", product.stock_shelf, "                     |");
-        console.log("               | Product Backup Stock: ", product.stock_backup, "                    |");
         console.log("               |_______________________________________________|");
+        console.log("                                                                ");
+        const product = await Product.find({name: req.query.name}); //
+        console.log(product);
+        
         res.json({product});
     } catch (error) {
         console.log('There was an error while getting the product, error: ', error)        ;
