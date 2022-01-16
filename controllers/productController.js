@@ -45,23 +45,29 @@ exports.getProductByName = async (req,res)=>{
 
 exports.updateProductStock = async (req,res)=>{
     
-    console.log(req.params.id);
+    console.log("REQ PARAMS ID: ", req.params.id);
+    console.log("req params: ", req.params);
+    console.log("req body params: ", req.body.params); //here comes the whole object from the front-end by axios PUT
 
     //extract every stock from the body of the request 
-    const {stock_total, stock_shelf, stock_backup, shelf_number_backup} = req.body;
+    const { name, shelf_number, shelf_number_backup, stock_total, stock_shelf, stock_backup, image} = req.body.params; 
     
     //create empty object and assign stock values (only if there is any of them)
     const newProduct = {};
-    if ( stock_total )  { newProduct.stock_total = stock_total }
+    
+    if ( name )  { newProduct.name = name }
+    if ( shelf_number )  { newProduct.shelf_number = shelf_number }    
+    if ( shelf_number_backup ) { newProduct.shelf_number_backup = shelf_number_backup }
     if ( stock_shelf )  { newProduct.stock_shelf = stock_shelf }
     if ( stock_backup ) { newProduct.stock_backup = stock_backup }
-    if ( shelf_number_backup ) { newProduct.shelf_number_backup = shelf_number_backup }
+    if ( stock_total )  { newProduct.stock_total = newProduct.stock_backup + newProduct.stock_shelf }
+    if ( image )  { newProduct.image = image }
+    
+    
+    
 
 
-    console.log("stock total: ", newProduct.stock_total)
-    console.log("stock shelf: ", newProduct.stock_shelf)
-    console.log("stock backup: ", newProduct.stock_backup)
-    console.log("shelf_number_backup : ", newProduct.shelf_number_backup)
+    console.log("NEW PRODUCT", newProduct);
 
     try {
 

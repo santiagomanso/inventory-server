@@ -9,7 +9,6 @@ const ProductSchema = mongoose.Schema({
     sku : {
         type: Number,
         required: true,
-        unique: true
     },
     shelf_number: {
         type: String,
