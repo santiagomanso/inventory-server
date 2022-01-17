@@ -16,13 +16,13 @@ app.options("*", cors());
 app.use(express.json({ extended: true }));
 
 //create port if there is no variable, assign 4000 by default.
-const PORT = process.env.PORT || 4000;
+const port = process.env.port || 4000;
 
 //import routes
 app.use('/api/products', require('./routes/products'));
 app.use('/api/shelfbackup', require('./routes/shelfbackup'));
 
 //start app
-app.listen(PORT, ()=> {
-    console.log(`The server is currently working on the port: ${PORT}`);
+app.listen(port, '0.0.0.0', ()=> {
+    console.log(`The server is currently working on the port: ${port}`);
 })
