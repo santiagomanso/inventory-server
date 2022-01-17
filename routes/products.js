@@ -8,9 +8,10 @@ router.post('/',
     productController.createProduct
 )
 
-// api/products GET
+// api/products GET i dont know how to switch between the two get functions so i will only use getBySku
 router.get('/', 
-    productController.getProductByName
+    productController.getProductBySKU,
+    //productController.getProductByName
 )
 
 //update product stock
