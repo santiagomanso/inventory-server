@@ -1,15 +1,16 @@
 //import express
 const express = require('express');
 const connectDB = require('./config/db');
-
+const cors = require('cors');
 //create server
 const app = express();
 
 //connect DB
 connectDB();
 
-var cors = require('cors');
-app.use(cors());
+//enable cors
+app.use(cors({ credentials: true, origin: true }));
+app.options("*", cors());
 
 //enable express.json
 app.use(express.json({ extended: true }));
@@ -25,6 +26,3 @@ app.use('/api/shelfbackup', require('./routes/shelfbackup'));
 app.listen(PORT, ()=> {
     console.log(`The server is currently working on the port: ${PORT}`);
 })
-
-
-
