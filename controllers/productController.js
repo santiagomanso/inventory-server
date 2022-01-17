@@ -76,7 +76,7 @@ exports.updateProductStock = async (req,res)=>{
     //extract every stock from the body of the request 
     const { name, sku,  shelf_number, shelf_number_backup, stock_total, stock_shelf, stock_backup, image} = req.body.params;
     
-    //create empty object and assign stock values (only if there is any of them)
+    //create empty object and assign stock values (only if there is any of them) will change in future
     const newProduct = {};
     
     if ( name )  { newProduct.name = name }
