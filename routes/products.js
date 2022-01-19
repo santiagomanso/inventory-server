@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const productController = require('../controllers/productController');
 
-
+//functions that trigger on different METHODS
 // api/products POST
 router.post('/', 
     productController.createProduct

@@ -8,10 +8,10 @@ const ProductSchema = mongoose.Schema({
     },
     sku : {
         type: Number,
-        required: true,
+        required: true, //this was an unique modifier but i decided i want to update it since i still get confused between SKU / EAN and testing is hard.
     },
     shelf_number: {
-        type: String,
+        type: String, //this will change into ObjectID with a ref to a different model, think thats the equivalent to an INNER JOIN / JOIN on SQL 
         required: true
     },
     shelf_number_backup: {
@@ -19,7 +19,7 @@ const ProductSchema = mongoose.Schema({
         required: true
     },
     stock_total: {
-        type: Number,
+        type: Number, //when this fields goes to 0 (zero) i got an NaN status, on -1 works fine, need to research more.
         required: true
     },
     stock_shelf: {

@@ -1,6 +1,9 @@
 const Product = require('../models/Product')
 
 
+//all of these functions have boths parameters because i want to keep watch when the req comes from body and when from params
+//i used console.log body, query and params to see when and how to get the data where i need it to be.
+
 //req comes from body (postman) res i use it on the catch
 exports.createProduct = async (req,res) =>{
 
@@ -44,7 +47,7 @@ exports.getProductByName = async (req,res)=>{
     }
 }
 
-    //product by SKU
+    //product by SKU 
 exports.getProductBySKU = async (req,res)=>{
     try {
         console.log("               _________________________________________________");
