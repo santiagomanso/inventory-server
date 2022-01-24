@@ -1,10 +1,5 @@
 const Product = require('../models/Product')
 
-
-//all of these functions have boths parameters because i want to keep watch when the req comes from body and when from params
-//i used console.log body, query and params to see when and how to get the data where i need it to be.
-
-//req comes from body (postman) res i use it on the catch
 exports.createProduct = async (req,res) =>{
 
      try {
@@ -71,21 +66,24 @@ exports.getProductBySKU = async (req,res)=>{
 
 
 exports.updateProductStock = async (req,res)=>{
-    
+   
+    //this logs i used them when i passed values through POSTMAN
+    console.log("REQ BODY", req.body)
+    console.log("REQ QUERY", req.query)
     console.log("REQ PARAMS ID: ", req.params.id);
     console.log("req params: ", req.params);
     console.log("req body params: ", req.body.params); //here comes the whole object from the front-end by axios PUT
 
     //extract every stock from the body of the request 
-    const { name, sku,  shelf_number, shelf_number_backup, stock_total, stock_shelf, stock_backup, image} = req.body.params;
+    const { name, sku,  shelf_number, shelf_number_backup_letter, shelf_number_backup_number, stock_total, stock_shelf, stock_backup, image} = req.body.params; //to use values from POSTMAN use req.body - for FRONT END client req.body.params
     
     //create empty object and assign stock values (only if there is any of them) will change in future
     const newProduct = {};
-    
     if ( name )  { newProduct.name = name }
     if ( sku ) { newProduct.sku = sku }
     if ( shelf_number )  { newProduct.shelf_number = shelf_number }    
-    if ( shelf_number_backup ) { newProduct.shelf_number_backup = shelf_number_backup }
+    if ( shelf_number_backup_letter ) { newProduct.shelf_number_backup_letter = shelf_number_backup_letter }
+    if ( shelf_number_backup_number ) { newProduct.shelf_number_backup_number = shelf_number_backup_number }
     if ( stock_shelf )  { newProduct.stock_shelf = stock_shelf }
     if ( stock_backup ) { newProduct.stock_backup = stock_backup }
     if ( stock_total )  { newProduct.stock_total = newProduct.stock_backup + newProduct.stock_shelf }

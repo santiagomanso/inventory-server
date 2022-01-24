@@ -14,7 +14,11 @@ const ProductSchema = mongoose.Schema({
         type: String, //this will change into ObjectID with a ref to a different model, think thats the equivalent to an INNER JOIN / JOIN on SQL 
         required: true
     },
-    shelf_number_backup: {
+    shelf_number_backup_letter: {
+        type: String,
+        required: true
+    },
+    shelf_number_backup_number: {
         type: String,
         required: true
     },
