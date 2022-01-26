@@ -10,7 +10,8 @@ router.post('/',
 
 // api/products GET i dont know how to switch between the two get functions so i will only use getBySku
 router.get('/', 
-    productController.getProductBySKU,
+    productController.getProductByEAN
+    //productController.getProductBySKU
     //productController.getProductByName
 )
 

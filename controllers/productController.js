@@ -20,7 +20,7 @@ exports.createProduct = async (req,res) =>{
 }
 
 //get
-    //product by name
+    //get product by name
 exports.getProductByName = async (req,res)=>{
     try {
         console.log("               _________________________________________________");
@@ -42,8 +42,8 @@ exports.getProductByName = async (req,res)=>{
     }
 }
 
-    //product by SKU 
-exports.getProductBySKU = async (req,res)=>{
+    //get product by SKU this is an internal number of every company
+    exports.getProductBySKU = async (req,res)=>{
     try {
         console.log("               _________________________________________________");
         console.log("               |            - GET PRODUCT BY SKU -             |")
@@ -64,6 +64,29 @@ exports.getProductBySKU = async (req,res)=>{
     }
 }
 
+    //get product by EAN this is the number on the barcode 
+    exports.getProductByEAN = async (req,res)=>{
+        
+        try {
+            console.log("               _________________________________________________");
+            console.log("               |            - GET PRODUCT BY EAN -             |")
+            console.log("               |                                               |");
+            console.log("               | req.body.ean =  ", req.body.ean , "                  |");
+            console.log("               | req.query.ean =  ", req.query.ean , "      |");
+            console.log("               | req.params (testing) =  ", req.params , "                  |");
+            console.log("               |                                               |");
+            console.log("               |_______________________________________________|");
+            console.log("                                                                ");
+            const product = await Product.find({ean: req.query.ean}); //
+            console.log(product);
+            
+            res.json({product});
+        } catch (error) {
+            console.log('There was an error while getting the product, error: ', error)        ;
+            res.status(500).send('There was an error getting the product');
+        }
+    }
+
 
 exports.updateProductStock = async (req,res)=>{
    
@@ -75,12 +98,13 @@ exports.updateProductStock = async (req,res)=>{
     console.log("req body params: ", req.body.params); //here comes the whole object from the front-end by axios PUT
 
     //extract every stock from the body of the request 
-    const { name, sku,  shelf_number, shelf_number_backup_letter, shelf_number_backup_number, stock_total, stock_shelf, stock_backup, image} = req.body.params; //to use values from POSTMAN use req.body - for FRONT END client req.body.params
+    const { name, sku, ean, shelf_number, shelf_number_backup_letter, shelf_number_backup_number, stock_total, stock_shelf, stock_backup, image} = req.body.params; //to use values from POSTMAN use req.body - for FRONT END client req.body.params
     
     //create empty object and assign stock values (only if there is any of them) will change in future
     const newProduct = {};
     if ( name )  { newProduct.name = name }
     if ( sku ) { newProduct.sku = sku }
+    if ( ean ) { newProduct.ean = ean }
     if ( shelf_number )  { newProduct.shelf_number = shelf_number }    
     if ( shelf_number_backup_letter ) { newProduct.shelf_number_backup_letter = shelf_number_backup_letter }
     if ( shelf_number_backup_number ) { newProduct.shelf_number_backup_number = shelf_number_backup_number }

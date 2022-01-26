@@ -6,6 +6,10 @@ const ProductSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    ean: {
+        type: Number,
+        required: true,
+    },
     sku : {
         type: Number,
         required: true, //this was an unique modifier but i decided i want to update it since i still get confused between SKU / EAN and testing is hard.
